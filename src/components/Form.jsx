@@ -35,11 +35,18 @@ const Form = ({
   };
 
   const updateTodo = (title, id, completed) => {
-    const newTodo = todos.map((todo) =>
-      todo.id === id ? { title, id, completed } : todo
-    );
+    if (completed) {
+      const newTodoDone = todosDone.map((todo) =>
+        todo.id === id ? { title, id, completed } : todo
+      );
+      setTodosDone(newTodoDone);
+    } else {
+      const newTodo = todos.map((todo) =>
+        todo.id === id ? { title, id, completed } : todo
+      );
+      setTodos(newTodo);
+    }
 
-    setTodos(newTodo);
     setEditTodo(false);
   };
 
@@ -59,6 +66,12 @@ const Form = ({
 
     const todoUndone = { id: id, title: title, completed: false };
     setTodos([...todos, todoUndone]);
+  };
+
+  const handleEditTodoDone = ({ id, title, completed }) => {
+    const findTodo = todosDone.find((todo) => todo.id === id);
+    setEditTodo(findTodo);
+    setInput("");
   };
 
   const handleDeleteTodoDone = ({ id, tile, completed }) => {
@@ -138,6 +151,7 @@ const Form = ({
                     strokeWidth="1.5"
                     stroke="orange"
                     className="w-5 h-5"
+                    onClick={() => handleEditTodoDone(todo)}
                   >
                     <path
                       strokeLinecap="round"
