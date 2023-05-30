@@ -99,6 +99,11 @@ const TodoList = (props) => {
             </div>
           );
         })}
+      {todos < 1 && (
+        <p className="mx-10 text-gray-400 text-xs text-center mt-3">
+          --- No todo yet! ---
+        </p>
+      )}
     </>
   );
 };

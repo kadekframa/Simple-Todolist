@@ -13,14 +13,23 @@ const Form = ({
   setTodosDone,
   editTodo,
   setEditTodo,
+  status,
+  setStatus,
 }) => {
   useEffect(() => {
+    console.info(todos);
+    console.info("Todo Done: ", todosDone);
+
     if (editTodo) {
       setInput(editTodo.title);
     } else {
       setInput("");
     }
-  }, [editTodo, setInput]);
+
+    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("todosDone", JSON.stringify(todosDone));
+  }, [editTodo, setInput, todos, todosDone]);
+
   const onInputChange = (event) => {
     setInput(event.target.value);
   };
@@ -55,11 +64,6 @@ const Form = ({
   const handleDeleteTodoDone = ({ id, tile, completed }) => {
     setTodosDone(todosDone.filter((todo) => todo.id !== id));
   };
-
-  useEffect(() => {
-    console.info(todos);
-    console.info("Todo Done: ", todosDone);
-  }, [todos, todosDone]);
 
   return (
     <div className="bg-zinc-800 w-1/3 h-full rounded-lg shadow-[2px_2px_30px_6px_rgb(0,0,0,0)] shadow-zinc-600 py-8">
@@ -163,6 +167,11 @@ const Form = ({
             </div>
           );
         })}
+      {todosDone < 1 && (
+        <p className="mx-10 mt-3 text-gray-400 text-xs text-center">
+          --- No todo done yet ---
+        </p>
+      )}
     </div>
   );
 };
