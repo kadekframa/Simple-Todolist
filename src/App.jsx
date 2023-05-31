@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-unused-vars
-import { useEffect, useState } from "react";
-import Form from "./components/Form";
+import { useState } from "react";
+import Container from "./components/Container";
 
 function App() {
-  // getting values from local storage.
+  // Getting values from local storage.
   const getTodoDataLS = () => {
     const data = localStorage.getItem("todos");
     if (data) {
@@ -13,6 +13,7 @@ function App() {
     }
   };
 
+  // Getting values from local storage.
   const getTodoDoneDataLS = () => {
     const data = localStorage.getItem("todosDone");
     if (data) {
@@ -26,15 +27,10 @@ function App() {
   const [todos, setTodos] = useState(getTodoDataLS());
   const [todosDone, setTodosDone] = useState(getTodoDoneDataLS());
   const [editTodo, setEditTodo] = useState(false);
-  const [status, setStatus] = useState(false);
-
-  // useEffect(() => {
-  //   setTodos(getDataLS());
-  // }, []);
 
   return (
     <div className="bg-blue-300 w-[100vw] h-full p-16 flex justify-center items-center">
-      <Form
+      <Container
         input={input}
         setInput={setInput}
         todos={todos}
@@ -43,8 +39,6 @@ function App() {
         setTodosDone={setTodosDone}
         editTodo={editTodo}
         setEditTodo={setEditTodo}
-        status={status}
-        setStatus={setStatus}
       />
     </div>
   );

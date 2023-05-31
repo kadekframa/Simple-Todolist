@@ -3,43 +3,43 @@
 import React from "react";
 import { CheckIcon, EditIcon, TrashIcon } from "../utils/icon";
 
-const TodoList = (props) => {
+const TodoListDone = (props) => {
   const {
     todos,
     setTodos,
-    input,
-    setInput,
     todosDone,
     setTodosDone,
+    input,
+    setInput,
     editTodo,
     setEditTodo,
   } = props;
 
-  const handleCheckTodo = ({ id, title }) => {
-    // Filter data where id todos equals with id that want to check (done).
-    setTodos(todos.filter((todo) => todo.id !== id));
+  const handleTodoUndone = ({ id, title, completed }) => {
+    // Filter data where id todosDone equals with id that want to check (undone).
+    setTodosDone(todosDone.filter((todo) => todo.id !== id));
 
-    // add data todo done into todosDone state.
-    const todoDone = { id: id, title: title, completed: true };
-    setTodosDone([...todosDone, todoDone]);
+    // add data todo undone into todos state.
+    const todoUndone = { id: id, title: title, completed: false };
+    setTodos([...todos, todoUndone]);
   };
 
-  const handleEditTodo = ({ id }) => {
+  const handleEditTodoDone = ({ id }) => {
     // Find data where id todos equals with id that want to edit.
-    const findTodo = todos.find((todo) => todo.id === id);
+    const findTodo = todosDone.find((todo) => todo.id === id);
     setEditTodo(findTodo);
     setInput("");
   };
 
-  const handleDeleteTodo = ({ id }) => {
+  const handleDeleteTodoDone = ({ id }) => {
     // Filter data where id todos equals with id that want to delete.
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodosDone(todosDone.filter((todo) => todo.id !== id));
   };
 
   return (
     <>
-      {todos &&
-        todos.map((todo) => {
+      {todosDone &&
+        todosDone.map((todo) => {
           return (
             <div
               key={todo.id}
@@ -48,23 +48,23 @@ const TodoList = (props) => {
               <p>{todo.title}</p>
               <div className="flex">
                 <button
-                  className="mr-3.5 border rounded-full bg-red-400"
-                  title="check for done"
-                  onClick={() => handleCheckTodo(todo)}
+                  className="mr-3.5 border rounded-full bg-green-400"
+                  title="Undone"
+                  onClick={() => handleTodoUndone(todo)}
                 >
                   <CheckIcon />
                 </button>
                 <button
                   className="mr-3"
                   title="edit"
-                  onClick={() => handleEditTodo(todo)}
+                  onClick={() => handleEditTodoDone(todo)}
                 >
                   <EditIcon />
                 </button>
                 <button
                   className="mr-3"
                   title="delete"
-                  onClick={() => handleDeleteTodo(todo)}
+                  onClick={() => handleDeleteTodoDone(todo)}
                 >
                   <TrashIcon />
                 </button>
@@ -73,13 +73,13 @@ const TodoList = (props) => {
           );
         })}
 
-      {todos < 1 && (
-        <p className="mx-10 text-gray-400 text-xs text-center mt-3">
-          --- No todo yet! ---
+      {todosDone < 1 && (
+        <p className="mx-10 mt-3 text-gray-400 text-xs text-center">
+          --- No todo done yet ---
         </p>
       )}
     </>
   );
 };
 
-export default TodoList;
+export default TodoListDone;
