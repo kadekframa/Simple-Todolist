@@ -1,4 +1,4 @@
-![Todolist-LocalStorage](?raw=true)
+![Todolist-LocalStorage](https://github.com/kadekframa/Simple-Todolist/blob/main/public/todolist-localstorage.jpg?raw=true)
 
 # Todolist
 
