@@ -4,7 +4,7 @@
 
 ## Project Description
 
-Simple Todolist project is created to improve my skill. This project is created with JavaScript languange, and contain feature like create, read, update and delete todo. If you want to know about the project, you can try this link deploy: [link-deploy](https://simple-todolist-self.vercel.app)
+Simple Todolist project is created to improve my skill. This project is created with JavaScript languange, and contain feature like create, read, update and delete todo. If you want to know about the project, you can try this link deploy: [Simple-Todolist](https://simple-todolist-self.vercel.app)
 
 ## Tech Stack
 
